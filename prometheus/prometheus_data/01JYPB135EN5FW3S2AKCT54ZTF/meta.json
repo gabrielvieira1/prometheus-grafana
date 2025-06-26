@@ -1,0 +1,17 @@
+{
+	"ulid": "01JYPB135EN5FW3S2AKCT54ZTF",
+	"minTime": 1750875558283,
+	"maxTime": 1750881600000,
+	"stats": {
+		"numSamples": 104893,
+		"numSeries": 1058,
+		"numChunks": 1308
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01JYPB135EN5FW3S2AKCT54ZTF"
+		]
+	},
+	"version": 1
+}

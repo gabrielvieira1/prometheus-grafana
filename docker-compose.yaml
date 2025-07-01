@@ -87,6 +87,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert.rules:/etc/prometheus/alert.rules
       - ./prometheus/prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -103,6 +104,20 @@ services:
       - proxy-forum-api
     user: root
 
+  alertmanager-forum-api: 
+    image: prom/alertmanager
+    container_name: alertmanager-forum-api
+    volumes: 
+        - ./alertmanager:/etc/alertmanager/:ro
+    ports: 
+        - 9093:9093
+    command: 
+        - --config.file=/etc/alertmanager/alertmanager.yml
+    networks:
+        - monit
+    depends_on:
+        - prometheus-forum-api
+
   grafana-forum-api:
     image: grafana/grafana
     container_name: grafana-forum-api
@@ -114,7 +129,7 @@ services:
     networks:
       - monit
     depends_on:
-      - prometheus-forum-api
+      - alertmanager-forum-api
     user: root
 
   client-forum-api:

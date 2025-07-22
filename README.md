@@ -54,10 +54,30 @@ O sistema é orquestrado via Docker Compose, com os seguintes serviços:
 
 ### Acessando os Serviços
 
-* **Aplicação (via Nginx):** `http://localhost:80`
+* **Aplicação (via Nginx):** `http://localhost/topicos`, `http://localhost/topicos/1`
 * **Grafana:** `http://localhost:3000` (credenciais padrão: `admin`/`admin`)
 * **Prometheus:** `http://localhost:9090`
 * **Alertmanager:** `http://localhost:9093`
+
+### Parando a Stack
+
+Para parar todos os serviços e remover os containers:
+
+```bash
+docker-compose down
+```
+
+Para parar os serviços e também remover volumes (dados persistentes):
+
+```bash
+docker-compose down -v
+```
+
+Para parar e remover tudo, incluindo images:
+
+```bash
+docker-compose down -v --rmi all
+```
 
 ## Integração com Slack para Alertas
 
